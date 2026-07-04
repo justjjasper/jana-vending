@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="JANA Vending provides premium smart vending solutions for offices, gyms, warehouses, and apartment complexes across the Los Angeles area. No-cost installation, cashless payments, and fully managed restocking."
+    />
+    <meta name="theme-color" content="#10B981" />
+    <meta property="og:title" content="JANA Vending — Smart Vending for Modern Workplaces" />
+    <meta
+      property="og:description"
+      content="Premium vending service for businesses across Los Angeles. Smart coolers, healthy snacks, and zero-hassle restocking."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>JANA Vending — Smart Vending for Modern Workplaces</title>
+    <script>
+      (function () {
+        var stored = localStorage.getItem('jana-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
