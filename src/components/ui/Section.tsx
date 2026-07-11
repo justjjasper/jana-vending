@@ -22,7 +22,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={ariaLabelledBy}
-      className={`py-16 sm:py-20 lg:py-24 ${bgClass} ${className}`}
+      className={`py-20 sm:py-28 lg:py-32 ${bgClass} ${className}`}
     >
       <Container>{children}</Container>
     </section>

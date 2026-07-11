@@ -13,7 +13,7 @@ export function PageHeader({ title, description, children }: PageHeaderProps) {
         {title}
       </h1>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+        <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
           {description}
         </p>
       )}
@@ -38,15 +38,19 @@ export function SectionHeading({
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left'
 
   return (
-    <div className={`mb-12 max-w-2xl ${alignClass}`}>
+    <div className={`mb-14 max-w-2xl ${alignClass}`}>
       <h2
         id={id}
-        className="font-display text-2xl font-bold tracking-tight text-charcoal sm:text-3xl"
+        className="font-display text-2xl font-bold tracking-tight text-charcoal sm:text-3xl lg:text-4xl"
       >
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-base leading-relaxed text-muted">{description}</p>
+        <p className="mt-4 text-base leading-relaxed text-muted max-w-[55ch]"
+          style={align === 'center' ? { marginInline: 'auto' } : undefined}
+        >
+          {description}
+        </p>
       )}
     </div>
   )

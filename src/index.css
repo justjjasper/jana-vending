@@ -5,46 +5,56 @@
 :root {
   --theme-primary: #10b981;
   --theme-primary-dark: #059669;
-  --theme-charcoal: #111827;
+  --theme-primary-light: #d1fae5;
+  --theme-charcoal: #18181b;
   --theme-background: #ffffff;
-  --theme-section: #f9fafb;
-  --theme-border: #e5e7eb;
-  --theme-muted: #6b7280;
-  --theme-shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  --theme-shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --theme-surface: #fafafa;
+  --theme-section: #f4f4f5;
+  --theme-border: #e4e4e7;
+  --theme-muted: #71717a;
+  --theme-shadow-card: 0 1px 2px 0 rgb(9 9 11 / 0.03), 0 1px 3px -1px rgb(9 9 11 / 0.04);
+  --theme-shadow-elevated: 0 8px 24px -4px rgb(9 9 11 / 0.08), 0 2px 6px -2px rgb(9 9 11 / 0.03);
+  --theme-shadow-glow: 0 0 0 1px rgb(16 185 129 / 0.12), 0 4px 16px -2px rgb(16 185 129 / 0.10);
   color-scheme: light;
 }
 
 .dark {
-  --theme-charcoal: #f3f4f6;
-  --theme-background: #111827;
-  --theme-section: #1f2937;
-  --theme-border: #374151;
-  --theme-muted: #9ca3af;
-  --theme-shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.25), 0 1px 2px -1px rgb(0 0 0 / 0.2);
-  --theme-shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.35), 0 2px 4px -2px rgb(0 0 0 / 0.25);
+  --theme-charcoal: #fafafa;
+  --theme-background: #09090b;
+  --theme-surface: #18181b;
+  --theme-section: #1c1c1f;
+  --theme-border: #27272a;
+  --theme-muted: #a1a1aa;
+  --theme-primary-light: #064e3b;
+  --theme-shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.25), 0 1px 3px -1px rgb(0 0 0 / 0.2);
+  --theme-shadow-elevated: 0 8px 24px -4px rgb(0 0 0 / 0.45), 0 2px 6px -2px rgb(0 0 0 / 0.25);
+  --theme-shadow-glow: 0 0 0 1px rgb(16 185 129 / 0.2), 0 4px 16px -2px rgb(16 185 129 / 0.15);
   color-scheme: dark;
 }
 
 @theme {
   --color-primary: var(--theme-primary);
   --color-primary-dark: var(--theme-primary-dark);
+  --color-primary-light: var(--theme-primary-light);
   --color-charcoal: var(--theme-charcoal);
   --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
   --color-section: var(--theme-section);
   --color-border: var(--theme-border);
   --color-muted: var(--theme-muted);
 
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
 
   --shadow-card: var(--theme-shadow-card);
   --shadow-elevated: var(--theme-shadow-elevated);
+  --shadow-glow: var(--theme-shadow-glow);
 }
 
 html {
@@ -52,7 +62,7 @@ html {
 }
 
 [id] {
-  scroll-margin-top: 1rem;
+  scroll-margin-top: 5rem;
 }
 
 body {
@@ -61,7 +71,8 @@ body {
   background-color: var(--theme-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+    color 0.3s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 h1,
@@ -71,9 +82,14 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
+  text-wrap: balance;
 }
 
 :focus-visible {
   outline: 2px solid var(--theme-primary);
   outline-offset: 2px;
+}
+
+::selection {
+  background-color: rgb(16 185 129 / 0.15);
 }

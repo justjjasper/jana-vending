@@ -1,54 +1,44 @@
-import { Link } from "react-router-dom";
-import { IconPhoto } from "@tabler/icons-react";
-import { useState } from "react";
-import { productTabs, products, type ProductCategory } from "../data/products";
-import { Button } from "../components/ui/Button";
-import { Card } from "../components/ui/Card";
-import { Section } from "../components/ui/Section";
-import { SectionHeading } from "../components/ui/Typography";
+import { Link } from 'react-router-dom'
+import { IconPhoto } from '@tabler/icons-react'
+import { useState } from 'react'
+import { productTabs, products, type ProductCategory } from '../data/products'
+import { Button } from '../components/ui/Button'
+import { Section } from '../components/ui/Section'
+import { SectionHeading } from '../components/ui/Typography'
+import { Reveal, RevealStagger, RevealItem } from '../components/ui/Reveal'
 
-function ProductGrid({ category }: { category: ProductCategory }) {
-  const filtered = products.filter((p) => p.category === category);
-
+function ProductCard({ product }: { product: (typeof products)[number] }) {
   return (
-    <ul
-      className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      role="list"
-      aria-label={`${productTabs.find((t) => t.id === category)?.label} products`}
-    >
-      {filtered.map((product) => (
-        <li key={product.id}>
-          <Card className="overflow-hidden transition-shadow hover:shadow-elevated">
-            <div className="flex aspect-square items-center justify-center bg-section">
-              {product.image ? (
-                <img
-                  src={product.image}
-                  alt={product.alt}
-                  className="h-full w-full object-contain p-4"
-                  loading="lazy"
-                />
-              ) : (
-                <div role="img" aria-label={product.alt}>
-                  <IconPhoto
-                    size={32}
-                    stroke={1.5}
-                    className="text-muted/50"
-                    aria-hidden="true"
-                  />
-                </div>
-              )}
-            </div>
-            <p className="border-t border-border px-4 py-3 text-sm font-medium text-charcoal">
-              {product.name}
-            </p>
-          </Card>
-        </li>
-      ))}
-    </ul>
-  );
+    <div className="group overflow-hidden rounded-2xl border border-border bg-background shadow-card transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:shadow-elevated hover:-translate-y-0.5">
+      <div className="flex aspect-square items-center justify-center bg-section">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.alt}
+            className="h-full w-full object-contain p-5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div role="img" aria-label={product.alt}>
+            <IconPhoto
+              size={28}
+              stroke={1.5}
+              className="text-muted/40"
+              aria-hidden="true"
+            />
+          </div>
+        )}
+      </div>
+      <p className="px-4 py-3.5 text-sm font-medium text-charcoal">
+        {product.name}
+      </p>
+    </div>
+  )
 }
 
 export function ProductsPreview() {
+  const featured = products.slice(0, 8)
+
   return (
     <Section
       id="products"
@@ -57,36 +47,45 @@ export function ProductsPreview() {
     >
       <SectionHeading
         id="products-preview-heading"
-        title="Products"
-        description="Beverages, snacks, and everything in between — curated for your team and fully customizable."
+        title="Stocked for your team"
+        description="Beverages, snacks, and everything in between - curated for your workplace and fully customizable."
       />
-      <div className="text-center">
-        <Button to="/products" variant="secondary">
-          Browse Full Menu
-        </Button>
-      </div>
+      <RevealStagger className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        {featured.map((product) => (
+          <RevealItem key={product.id}>
+            <ProductCard product={product} />
+          </RevealItem>
+        ))}
+      </RevealStagger>
+      <Reveal delay={0.3}>
+        <div className="mt-12 text-center">
+          <Button to="/products" variant="secondary">
+            Browse full menu
+          </Button>
+        </div>
+      </Reveal>
     </Section>
-  );
+  )
 }
 
 export function ProductsPage() {
-  const [activeTab, setActiveTab] = useState<ProductCategory>("beverages");
+  const [activeTab, setActiveTab] = useState<ProductCategory>('beverages')
 
   return (
-    <Section ariaLabelledBy="products-page-heading" className="pt-12">
+    <Section ariaLabelledBy="products-page-heading" className="pt-32 sm:pt-36">
       <SectionHeading
         id="products-page-heading"
         title="Products"
-        description="We carry a wide range of beverages, snacks, and fresh options. Don't see what you need? Tell us — we will work to stock it for your location."
+        description="We carry a wide range of beverages, snacks, and fresh options. Tell us what your team wants and we will stock it."
       />
 
       <div
-        className="mb-10 flex flex-wrap justify-center gap-2"
+        className="mb-12 flex flex-wrap justify-center gap-2"
         role="tablist"
         aria-label="Product categories"
       >
         {productTabs.map((tab) => {
-          const isActive = activeTab === tab.id;
+          const isActive = activeTab === tab.id
           return (
             <button
               key={tab.id}
@@ -96,15 +95,15 @@ export function ProductsPage() {
               aria-selected={isActive}
               aria-controls={`panel-${tab.id}`}
               onClick={() => setActiveTab(tab.id)}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 isActive
-                  ? "bg-primary text-white"
-                  : "bg-section text-charcoal hover:bg-border/60"
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-section text-muted hover:bg-border/60 hover:text-charcoal'
               }`}
             >
               {tab.label}
             </button>
-          );
+          )
         })}
       </div>
 
@@ -117,20 +116,34 @@ export function ProductsPage() {
           hidden={activeTab !== tab.id}
           tabIndex={activeTab === tab.id ? 0 : -1}
         >
-          {activeTab === tab.id && <ProductGrid category={tab.id} />}
+          {activeTab === tab.id && (
+            <ul
+              className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+              role="list"
+              aria-label={`${tab.label} products`}
+            >
+              {products
+                .filter((p) => p.category === tab.id)
+                .map((product) => (
+                  <li key={product.id}>
+                    <ProductCard product={product} />
+                  </li>
+                ))}
+            </ul>
+          )}
         </div>
       ))}
 
-      <p className="mt-12 text-center text-sm text-muted">
-        Have a specific request?{" "}
+      <p className="mt-14 text-center text-sm text-muted">
+        Have a specific request?{' '}
         <Link
           to="/contact"
-          className="font-medium text-primary hover:text-primary-dark"
+          className="font-medium text-primary transition-colors duration-200 hover:text-primary-dark"
         >
           Let us know
-        </Link>{" "}
+        </Link>{' '}
         and we will add it to your machine.
       </p>
     </Section>
-  );
+  )
 }

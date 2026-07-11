@@ -11,38 +11,40 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-gray-800 bg-gray-900 text-white dark:border-gray-700 dark:bg-gray-950">
-      <Container className="py-14">
+    <footer className="border-t border-border bg-section">
+      <Container className="py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               to="/"
-              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 dark:focus-visible:ring-offset-gray-950"
-              aria-label="Janna Vending — Home"
+              className="inline-flex items-center gap-2.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              aria-label="Janna Vending - Home"
             >
               <span
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-white"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-display text-xs font-bold text-white"
                 aria-hidden="true"
               >
                 JV
               </span>
-              <span className="font-display text-lg font-semibold">Janna Vending</span>
+              <span className="font-display text-base font-semibold text-charcoal">
+                Janna Vending
+              </span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400 dark:text-gray-300">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
               Premium smart vending for workplaces across the Los Angeles area. Fresh
               snacks, zero hassle.
             </p>
           </div>
 
           <div>
-            <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200">
+            <h2 className="font-display text-sm font-semibold text-charcoal">
               Navigation
             </h2>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-2.5">
               <li>
                 <Link
                   to="/"
-                  className="text-sm text-gray-400 transition-colors hover:text-white dark:text-gray-300 dark:hover:text-white"
+                  className="text-sm text-muted transition-colors duration-200 hover:text-charcoal"
                 >
                   Home
                 </Link>
@@ -51,7 +53,7 @@ export function Footer() {
                 <li key={item.path}>
                   <Link
                     to={item.path}
-                    className="text-sm text-gray-400 transition-colors hover:text-white dark:text-gray-300 dark:hover:text-white"
+                    className="text-sm text-muted transition-colors duration-200 hover:text-charcoal"
                   >
                     {item.label}
                   </Link>
@@ -60,7 +62,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/contact"
-                  className="text-sm text-gray-400 transition-colors hover:text-white dark:text-gray-300 dark:hover:text-white"
+                  className="text-sm text-muted transition-colors duration-200 hover:text-charcoal"
                 >
                   Contact
                 </Link>
@@ -69,14 +71,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200">
+            <h2 className="font-display text-sm font-semibold text-charcoal">
               Contact
             </h2>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-2.5">
               <li>
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-sm text-gray-400 transition-colors hover:text-white dark:text-gray-300 dark:hover:text-white"
+                  className="text-sm text-muted transition-colors duration-200 hover:text-charcoal"
                 >
                   {contactInfo.email}
                 </a>
@@ -84,7 +86,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:${contactInfo.phone.replace(/-/g, '')}`}
-                  className="text-sm text-gray-400 transition-colors hover:text-white dark:text-gray-300 dark:hover:text-white"
+                  className="text-sm text-muted transition-colors duration-200 hover:text-charcoal"
                 >
                   {contactInfo.phone}
                 </a>
@@ -93,21 +95,20 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200">
-              Service Area
+            <h2 className="font-display text-sm font-semibold text-charcoal">
+              Service area
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-gray-400 dark:text-gray-300">
-              Los Angeles County — Burbank, LA, Carson, Long Beach, and surrounding
-              communities.
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Los Angeles County including Burbank, LA, Carson, Long Beach, and surrounding communities.
             </p>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 dark:border-gray-700 sm:flex-row">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+          <p className="text-sm text-muted">
             &copy; {currentYear} Janna Vending. All rights reserved.
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-muted">
             Smart vending for modern workplaces.
           </p>
         </div>
